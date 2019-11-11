@@ -1,0 +1,283 @@
+---
+title: "Lecture 8"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+
+## Cluster Sampling and Systematic Sampling
+
+In general, we want the target and study populations to be the same. When they are not the same, the researcher must be careful to ensure that conclusions based on the sample results can still be applied to the target population.
+\vfill
+
+Because of restrictions such as cost or scheduling conflicts, it is often impossible to collect a simple random sample or a stratified random sample. In many cases, however, it may be possible to define a sampling frame with sampling units that _are not_ the units in the target population or the study population, yet still obtain statistically valid estimates.
+\vfill
+
+__Cluster sampling__ is an example of when
+
+\vfill
+
+Example. Suppose MSU wants to determine whether students would a fall break during October or to finish classes later in December. A set of 50 classes are randomly selected and students within those classes record their choice.
+\vfill
+
+A population contains 
+
+\vfill
+
+In this example the PSUs are the classes and the SSUs are the students within the classes.
+\vfill
+
+The primary sampling units may be of different sizes. That is, the numbers of secondary sampling units in the primary units are not all the same.
+\vfill
+
+Think of these disjoint groups of population units (clusters) in a similar fashion to strata. Then suppose we define the sampling frame as a set of clusters Then, the sampling units in this population are not individual units in the population.
+\vfill
+
+The sampling units are _clusters_ of population units. 
+
+\vfill
+
+Note: the population has $M_0$ individual units, but the sampling frame only has $N$ PSU corresponding to the number of clusters formed. 
+
+\vfill
+
+Very often, all of the secondary sampling units in each selected primary sampling unit will also be included in the sample. 
+
+	
+\newpage	
+	
+	
+	
+Figure (from textbook) gives a visual overview of cluster sampling vs. stratified random sampling.
+	\begin{center}
+	\begin{figure}[ht!]
+  \includegraphics{/Volumes/GoogleDrive/My Drive/Teaching/STAT446/LectureNotes/notes2019/cluster.pdf}
+\end{figure} 
+\end{center}
+
+
+#### Cluster Sampling Notation
+
+Similar to stratified random sampling, let $y_{ij}$ denote the response of SSU $j$ within cluster $i$.
+\vfill
+
+##### Primary Sampling Unit (PSU) level
+
+- $N=$ the number of clusters (PSUs) in the population
+\vfill
+
+- $M_i=$ 
+
+\vfill
+
+- $M_0 = \sum_{i=1}^N M_i =$ 
+\vfill
+
+- $t_i = \sum_{j=1}^{M_i} y_{ij} =$ cluster $i$ total
+\vfill
+
+- $t = \sum_{i=1}^N t_i = \sum_{i=1}^N \sum_{j=1}^{M_i} y_{ij} =$ population total
+\vfill
+
+- $\bar{t} = \frac{1}{N} \sum_{i=1}^n t_i =$ mean of the cluster totals (mean of PSU values).
+\vfill
+
+- $S^2_t = \frac{\sum_{i=1}^N (t_i - \bar{t})^2}{N-1}$ the population variance of cluster totals
+
+\newpage
+
+##### Secondary Sampling Unit (SSU) level
+
+$\bar{y}_U = \sum_{i=1}^N \sum_{j=1}^{M_i} \frac{y_{ij}}{M_0} = \frac{t}{M_0}$ the population mean
+\vfill
+
+$\bar{y}_{iU} = \sum_{j=1}^{M_i} \frac{y_{ij}}{M_i} = \frac{t_i}{M_i} =$ population mean in PSU $i$
+\vfill
+
+$S^2 = \sum_{i=1}^N \sum_{j=1}^{M_i} \frac{(y_{ij} - \bar{y}_U)^2}{M_0 - 1} =$ population variance of SSUs
+\vfill
+
+$S_i^2 = \sum_{j=1}^{M_i} \frac{(y_{ij} - \bar{y}_{iU})^2}{M_i - 1} =$ population variance within PSU $i$
+
+##### Sample Values
+$n =$ the number of 
+\vfill
+
+$m_i=$ number of 
+\vfill
+
+$\hat{\bar{y}}_i = \frac{1}{m_i} \sum_{j=1}^{m_i} y_{ij} =$ 
+\vfill
+
+$\hat{t}_i = \frac{M_i}{m_i} \sum_{j=1}^{m_i} y_{ij} =$ 
+\vfill
+
+$\hat{t}_{cl} = \frac{N}{n} \sum_{i=1}^n \hat{t}_i$ = 
+\vfill
+
+$s_t^2 = \frac{\sum_{i=1}^n (t_i - \frac{\hat{t}_{cl}}{N})^2}{n-1} =$ the sample variance of estimated cluster (PSU) totals
+\vfill
+
+$s_i^2 \frac{\sum_{j=1}^{m_i}(y_{ij} - \bar{y}_i)^2}{m_i -1} =$ the sample variance within PSU $i$
+\vfill
+
+$w_{ij} =$ sampling weight for SSU $j$ in PSU $i$
+\vfill
+
+	
+Note in one-stage cluster samping, we have $m_i= M_i$. That is, every SSU in PSU $i$ is sampled. Thus $\bar{y}_i = \hat{\bar{y}}_i$, $t_i = \hat{t}_i$, and $S_i^2 = s_i^2$ when $m_i = M_i$.
+
+#### One-Stage Cluster Sampling
+
+When the strata themselves are the primary sampling units, the strata are called clusters. The selection of a sample of clusters to provide a sample of population units 
+\vfill
+
+If all of the population units in every selected cluster are in the sample, 
+\vfill
+
+What is the difference between one-stage cluster sampling and stratified random sampling?
+
+- In stratified SRS, 
+\vfill
+
+- In one-stage cluster sampling, 
+\vfill
+
+When a cluster is defined as a group of population units, the clusters are called the primary sampling units. Subgroups within primary sample units are called secondary sampling units. For one-stage cluster sampling, the secondary sampling units are the individual units.
+\vfill
+
+If the selection of the population units within every selected cluster is restricted a second time, then this technique is known as subsampling or two-stage cluster sampling. 
+\vfill
+
+If a sample of primary sampling units (Stage 1) is selected, followed by a selection of secondary sampling units (Stage 2) within the sample of primary sampling units, followed by a selection of tertiary sampling units (Stage 3) within the sample of secondary sampling units, and so on, then the sampling procedure is known as multistage cluster sampling.
+\vfill
+
+In cluster sampling, the size of the cluster can also be used as an auxilarly variable to select clusters with unequal sampling probabilities (more later) or used in a ratio estimator.
+\vfill
+
+Stratified sampling vs. cluster sampling:
+
+- A researcher will use a stratified samplig design because
+
+\vfill
+
+- A researcher will use cluster sampling because 
+
+\newpage
+
+
+
+##### Estimation of $\bar{y}_U, t,$ and $\bar{t}$.
+
+The unbiased estimator of $t$ is:
+\vfill
+\vfill
+where $i \in \mathcal{S}$ corresponds to the PSUs selected in the sample $\mathcal{S},$ $j \in \mathcal{S}_i$ corresponds to the SSUs selected in the sample for PSUs $j$ ($\mathcal{S}_j$), and $w_{ij}$ is the weight associated with probability of selection $\frac{N}{n}$ in this case.
+\vfill
+
+The unbiased estimators of $\bar{y}_U$ is:
+\vfill
+\vfill
+where $\bar{y} = \frac{1}{n} \sum_{i=1}^n t_i = \frac{\hat{t}_{cl}}{N}$ is the sample mean of the cluster totals.
+\vfill
+
+Next we want to study the standard error of these estimators:
+	\begin{equation*}
+	SE(\hat{t}_{cl}) = N\sqrt{(1-\frac{n}{N}) \frac{S_t^2}{n}} 
+	\end{equation*}
+	where $S_t^2 = \frac{\sum_{i=1}^N (t_i - \bar{t})^2}{N-1}$ is the variance of the $N$ cluster $t_i$ totals. 
+\vfill
+
+
+
+Because $S^2_t$ is unknown, the sample variance of the cluster totals is used:
+	\begin{equation*}
+	s_t^2 = \frac{\sum_{i=1}^n (t_i - \frac{\hat{t}_{cl}}{N})^2}{n-1}.
+	\end{equation*}
+\vfill
+
+The square root of the estimated variances using $s_t^2$ returns the standard errors of the estimators.
+\vfill
+
+The standard error for the population mean is actually calculated using ratio estimation (similar to domain estimation)
+	\begin{equation*}
+	SE(\hat{\bar{y}}_{cl}) = \sqrt{\left(1-\frac{n}{N}\right) \frac{1}{n \bar{M}^2} \frac{\sum{i \in \mathcal{S}} \left(t_i - \hat{\bar{y}}_{cl} M_i \right)^2}{n-1}} 
+	\end{equation*}
+	where $S_t^2 = \frac{\sum_{i=1}^N (t_i - \bar{t})^2}{N-1}$ is the variance of the $N$ cluster $t_i$ totals. 
+\vfill
+
+Confidence intervals follow the usual prescription, but note that the degrees of freedom for the $t$ critical values are based on the the number of primary sampling units, or clusters, and not the total number of secondary sampling units.
+	
+\newpage
+
+#### Comparison to SRS
+
+Because the variance formulas for $\hat{\bar{y}}_{U,cl}$ and $\hat{t}_{cl}$ are determined only from the cluster-to-cluster variability, the precision of the estimators can be improved if 
+\vfill
+
+Q: How does this compare to the strategy for choosing strata?
+\vfill
+
+
+We want clusters such that the variability of the SSU $y-$values within each cluster 
+\vfill
+
+This is in 
+\vfill
+
+Example. Suppose we are interested in salaries of past MSU graduates. Devise a stratified random sampling scheme and a cluster sampling scheme. 
+\vfill
+\vfill
+
+For comparison sake, assume we took a SRS with $n \times M$ samples. The variance of the estimated total would be:
+	\begin{equation}
+	V(\hat{t}_{SRS}) = N^2 (1-\frac{n}{N}) \frac{M S^2}{n}.
+	\end{equation}
+	Recall the variance of the cluster sampling estimate of the population total was:
+	\begin{equation}
+	V(\hat{t}_{cl}) = N^2 (1-\frac{n}{N}) \frac{S_t^2}{n},
+	\end{equation}
+	where $S_t^2 = \sum_{i=1}^n \frac{(t_i - \bar{t})^2}{N-1} = M (MSB)$. MSB is the mean square of the between cluster variability. 
+
+\vfill
+So if $MSB > S^2$ then cluster sampling is less efficient than SRS.
+
+\newpage
+
+#### Systematic Sampling
+Systematic Sampling is a sampling plan in which the population units are collected systematically throughout the population. More specifically, a single primary sampling unit consists of secondary sampling units that are relatively spaced with each other in the systematic pattern throughout the population.
+\vfill
+
+Suppose the study area is partioned into a $20 \times 20$ grid of 400 population units. A primary sampling unit in a systematic sample could consist of all population units that occur in every 5 units..
+\vfill
+
+Initially, systematic sampling and cluster sampling appear to be opposites because systematic samples contain secondary sampling units that are spread 
+\vfill
+
+Systematic and cluster sampling are similar, however, because whenever a primary sampling unit is selected from the sampling frame, all secondary sampling units of that primary sampling unit will be included in the sample. Thus, random selection occurs at the primary sampling unit level and not the secondary sampling unit level.
+\vfill
+
+For estimation purposes, you could ignore the secondary sampling unit $y_{ij}-$values and only retain the primary sampling units $t_i-$values. This is what we did with one-stage cluster sampling.
+\vfill
+
+The systematic and cluster sampling principle: How do we obtain low variance?
+\vfill
+
+
+\vfill
+
+This is equivalent to saying that the within-cluster variablity should be as large as possible to obtain the most precise estimators. Thus, the ideal primary sampling unit is representative of the full diversity of $y_{ij}$ values within the population.
+\vfill
+
+With natural populations of spatially distributed plants, animals, minerals, ect., 
+
+
+### Estimation of $\bar{y}_U$ and $t$
+
+If a SRS is used to select the systematic primary sampling units, we can apply the estimation results for cluster sampling to define (i) estimators, (ii) the variance of each estimator, and (iii) the estimated variance of each estimator.
+\vfill
